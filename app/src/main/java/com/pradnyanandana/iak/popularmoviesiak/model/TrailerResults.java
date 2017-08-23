@@ -7,6 +7,7 @@ package com.pradnyanandana.iak.popularmoviesiak.model;
 class TrailerResults {
     private String key;
     private String name;
+    private String site;
 
     public String getKey() {
         return key;
@@ -22,5 +23,13 @@ class TrailerResults {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
     }
 }
