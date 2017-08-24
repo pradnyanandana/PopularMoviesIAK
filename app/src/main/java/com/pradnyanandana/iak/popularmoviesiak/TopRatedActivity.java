@@ -24,8 +24,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.pradnyanandana.iak.popularmoviesiak.adapter.MoviesAdapter;
-import com.pradnyanandana.iak.popularmoviesiak.model.PopularMovies;
 import com.pradnyanandana.iak.popularmoviesiak.model.Results;
+import com.pradnyanandana.iak.popularmoviesiak.model.TopRatedMovies;
 import com.pradnyanandana.iak.popularmoviesiak.utilities.Constant;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ import butterknife.ButterKnife;
 public class TopRatedActivity extends AppCompatActivity
         implements MoviesAdapter.ItemClickListener {
 
-    public static final String TAG = MostPopularActivity.class.getSimpleName();
+    public static final String TAG = TopRatedActivity.class.getSimpleName();
     public List<Results> moviesItemList = new ArrayList<>();
     @BindView(R.id.rv_movies)
     RecyclerView mRecyclerView;
@@ -91,8 +91,8 @@ public class TopRatedActivity extends AppCompatActivity
                     @Override
                     public void onResponse(String response) {
                         try {
-                            PopularMovies popularMovies = gson.fromJson(response, PopularMovies.class);
-                            for (Results item : popularMovies.getResults()) {
+                            TopRatedMovies topRatedMovies = gson.fromJson(response, TopRatedMovies.class);
+                            for (Results item : topRatedMovies.getResults()) {
                                 moviesItemList.add(item);
                             }
                             mAdapter.notifyDataSetChanged();
