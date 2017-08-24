@@ -4,7 +4,7 @@ package com.pradnyanandana.iak.popularmoviesiak.model;
  * Created by pradn on 24/08/2017.
  */
 
-class ResultsPopularMovies {
+public class Results {
     private int id;
     private double vote_average;
     private String title;

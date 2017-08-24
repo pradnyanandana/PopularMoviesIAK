@@ -8,6 +8,6 @@ public class TopRatedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.top_rated);
+        setContentView(R.layout.activity_main);
     }
 }
