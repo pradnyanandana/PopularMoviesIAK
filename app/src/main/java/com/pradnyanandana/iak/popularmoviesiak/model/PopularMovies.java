@@ -7,13 +7,13 @@ import java.util.List;
  */
 
 public class PopularMovies {
-    private List<Results> results;
+    private List<ResultsPopularMovies> results;
 
-    public List<Results> getResults() {
+    public List<ResultsPopularMovies> getResults() {
         return results;
     }
 
-    public void setResults(List<Results> results) {
+    public void setResults(List<ResultsPopularMovies> results) {
         this.results = results;
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TrailerMovies {
     private int id;
-    private List<TrailerResults> results;
+    private List<ResultsTrailer> results;
 
     public int getId() {
         return id;
@@ -18,11 +18,11 @@ public class TrailerMovies {
         this.id = id;
     }
 
-    public List<TrailerResults> getResults() {
+    public List<ResultsTrailer> getResults() {
         return results;
     }
 
-    public void setResults(List<TrailerResults> results) {
+    public void setResults(List<ResultsTrailer> results) {
         this.results = results;
     }
 }
