@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PopularMoviesIAK</string>
+    <string name="network_error">Network Error! Make sure you are connected to the internet</string>
 </resources>
