@@ -12,4 +12,6 @@ public class Constant {
     public static final String TOP_RATED = "top_rated";
     public static final String PARAM_API_KEY = "?api_key=";
     public static final String API_KEY = BuildConfig.API_KEY;
+    public static final String POSTER_PATH = "https://image.tmdb.org/t/p/w185";
+    public static final String BACKDROP_PATH = "https://image.tmdb.org/t/p/w600";
 }

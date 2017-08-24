@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.pradnyanandana.iak.popularmoviesiak.R;
 import com.pradnyanandana.iak.popularmoviesiak.model.Results;
+import com.pradnyanandana.iak.popularmoviesiak.utilities.Constant;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +70,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
 
         public void bind(final Results data, final int position, final ItemClickListener itemClickListener) {
-            movie_poster.setImageResource(data.getPoster_path());
+//            movie_poster.setImageResource(data.getPoster_path());
+            Picasso.with(itemView.getContext())
+                    .load(Constant.POSTER_PATH + data.getPoster_path())
+                    .into(movie_poster);
             movie_name.setText(data.getTitle());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
