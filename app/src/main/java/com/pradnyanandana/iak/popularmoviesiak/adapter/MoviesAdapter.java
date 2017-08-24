@@ -58,7 +58,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         return moviesItemList.size();
     }
 
-    private class MoviesViewHolder extends RecyclerView.ViewHolder {
+    public class MoviesViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.iv_movie) ImageView movie_poster;
         @BindView(R.id.tv_movie) TextView movie_name;
 
