@@ -1,9 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.pradnyanandana.iak.popularmoviesiak.DetailActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:id="@+id/iv_detail_backdrop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/contoh_backdrop"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/iv_detail_poster"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/contoh_poster"
+            android:layout_marginLeft="20dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Minion"
+                android:textSize="25sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Release Date"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_detail_release"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Release Date"
+                android:textSize="20sp"
+                android:textColor="#80FFFFFF"
+                android:layout_marginLeft="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Movie Rate"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_detail_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Release Date"
+                android:textSize="20sp"
+                android:textColor="#80FFFFFF"
+                android:layout_marginLeft="20dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Overview"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Overview overview overview"
+        android:textColor="#80000000"
+        android:textSize="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"/>
+
+</LinearLayout>

@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.pradnyanandana.iak.popularmoviesiak.MostPopularActivity;
 import com.pradnyanandana.iak.popularmoviesiak.R;
 import com.pradnyanandana.iak.popularmoviesiak.model.Results;
 import com.pradnyanandana.iak.popularmoviesiak.utilities.Constant;
@@ -71,8 +74,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         public void bind(final Results data, final int position, final ItemClickListener itemClickListener) {
 //            movie_poster.setImageResource(data.getPoster_path());
-            Picasso.with(itemView.getContext())
+//            Picasso.with(itemView.getContext())
+//                    .load(Constant.POSTER_PATH + data.getPoster_path())
+//                    .into(movie_poster);
+            Glide.with(MoviesViewHolder.this.itemView.getContext())
                     .load(Constant.POSTER_PATH + data.getPoster_path())
+                    .fitCenter()
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(movie_poster);
             movie_name.setText(data.getTitle());
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -84,3 +93,58 @@ public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 }
+
+//public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder> {
+//    private static final String TAG = MoviesAdapter.class.getSimpleName();
+//    private List<Results> moviesItemList = new ArrayList<>();
+//
+//    private final ItemClickListener mOnClickListener;
+//
+//    public interface ItemClickListener {
+//        void onItemClick(Results data, int position);
+//    }
+//
+//    public MoviesAdapter(List<Results> moviesItemList, ItemClickListener mOnClickListener) {
+//        this.moviesItemList = moviesItemList;
+//        this.mOnClickListener = mOnClickListener;
+//    }
+//
+//    @Override
+//    public MoviesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movies_layout, parent,false);
+//        MoviesViewHolder vh = new MoviesViewHolder(v);
+//        return vh;
+//    }
+//
+//    @Override
+//    public void onBindViewHolder(MoviesViewHolder holder, int position) {
+//        Results results = moviesItemList.get(position);
+//
+//        holder.tvMovies.setText(results.getTitle());
+//        Context context = holder.itemView.getContext();
+//
+//        String photourl = Constant.POSTER_PATH + results.getPoster_path();
+//
+//        Glide.with(context)
+//                .load(photourl)
+//                .centerCrop()
+//                .crossFade()
+//                .into(holder.ivMovies);
+//    }
+//
+//    @Override
+//    public int getItemCount() {
+//        return moviesItemList.size();
+//    }
+//
+//    public class MoviesViewHolder extends RecyclerView.ViewHolder {
+//        public TextView tvMovies;
+//        public ImageView ivMovies;
+//
+//        public MoviesViewHolder(View itemView) {
+//            super(itemView);
+//            tvMovies = (TextView) itemView.findViewById(R.id.tv_movie);
+//            ivMovies = (ImageView) itemView.findViewById(R.id.iv_movie);
+//        }
+//    }
+//}
