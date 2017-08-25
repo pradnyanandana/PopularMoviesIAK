@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.pradnyanandana.iak.popularmoviesiak.MostPopularActivity;
@@ -77,6 +78,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 //            Picasso.with(itemView.getContext())
 //                    .load(Constant.POSTER_PATH + data.getPoster_path())
 //                    .into(movie_poster);
+
             Glide.with(MoviesViewHolder.this.itemView.getContext())
                     .load(Constant.POSTER_PATH + data.getPoster_path())
                     .fitCenter()
