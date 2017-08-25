@@ -7,14 +7,14 @@ import java.util.List;
  */
 
 public class TrailerMovies {
-    private int id;
+    private String id;
     private List<ResultsTrailer> results;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

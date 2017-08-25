@@ -5,7 +5,7 @@ package com.pradnyanandana.iak.popularmoviesiak.model;
  */
 
 public class Results {
-    private int id;
+    private String id;
     private double vote_average;
     private String title;
     private String poster_path;
@@ -13,11 +13,11 @@ public class Results {
     private String overview;
     private String release_date;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

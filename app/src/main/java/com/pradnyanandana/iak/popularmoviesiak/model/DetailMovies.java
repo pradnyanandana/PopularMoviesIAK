@@ -10,7 +10,7 @@ public class DetailMovies {
     private String backdrop_path;
     private long budget;
     private List<GenreDetails> genres;
-    private int id;
+    private String id;
     private String original_title;
     private String overview;
     private String poster_path;
@@ -42,11 +42,11 @@ public class DetailMovies {
         this.genres = genres;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
