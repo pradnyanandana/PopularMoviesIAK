@@ -15,8 +15,7 @@
         android:id="@+id/iv_detail_backdrop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/contoh_backdrop"
-        android:scaleType="centerCrop"/>
+        android:src="@drawable/contoh_backdrop" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,7 +29,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/contoh_poster"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -38,23 +38,12 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_detail_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Minion"
-                android:textSize="25sp"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"/>
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Release Date"
                 android:textSize="20sp"
                 android:textColor="#FFFFFF"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="38dp"
                 android:layout_marginLeft="20dp"/>
 
             <TextView

@@ -29,7 +29,6 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.iv_detail_backdrop)ImageView backdrop;
     @BindView(R.id.iv_detail_poster) ImageView poster;
     @BindView(R.id.tv_detail_release)TextView release;
-    @BindView(R.id.tv_detail_title) TextView title;
     @BindView(R.id.tv_detail_rating) TextView rate;
     @BindView(R.id.tv_detail_overview) TextView overview;
 
@@ -51,6 +50,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void bindData() {
+        setTitle(results.getTitle());
         Glide.with(this)
                 .load(Constant.BACKDROP_PATH + results.getBackdrop_path())
                 .fitCenter()
@@ -64,7 +64,6 @@ public class DetailActivity extends AppCompatActivity {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(poster);
         release.setText(results.getRelease_date());
-        title.setText(results.getTitle());
         rate.setText(String.valueOf(results.getVote_average()));
         overview.setText(results.getOverview());
     }

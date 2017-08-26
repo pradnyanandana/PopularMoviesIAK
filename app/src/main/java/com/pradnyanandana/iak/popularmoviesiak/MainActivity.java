@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
@@ -24,6 +22,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,7 +32,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.pradnyanandana.iak.popularmoviesiak.adapter.MoviesAdapter;
-import com.pradnyanandana.iak.popularmoviesiak.model.PopularMovies;
+import com.pradnyanandana.iak.popularmoviesiak.model.Movies;
 import com.pradnyanandana.iak.popularmoviesiak.model.Results;
 import com.pradnyanandana.iak.popularmoviesiak.utilities.Constant;
 
@@ -48,6 +47,7 @@ public class MainActivity extends AppCompatActivity
 
     public static final String TAG = MainActivity.class.getSimpleName();
     public List<Results> moviesItemList = new ArrayList<>();
+    Movies movies;
     @BindView(R.id.rv_movies)
     RecyclerView mRecyclerView;
     private MoviesAdapter mAdapter;
@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity
     ImageView mImageErrorMessage;
     @BindView(R.id.tv_error_message)
     TextView mDisplayErrorMessage;
+    private String FilmCategory;
+    private int indeks = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,23 +89,22 @@ public class MainActivity extends AppCompatActivity
         mRecyclerView.setAdapter(mAdapter);
 
         if (isNetworkConnected() || isWifiConnected()) {
-            getDataFromAPI();
+            requestJsonObject(indeks);
         } else {
             mRecyclerView.setVisibility(View.INVISIBLE);
             mLinearLayoutRetry.setVisibility(View.VISIBLE);
         }
 
-        ActionBar toolbar2 = getSupportActionBar();
-        if (toolbar2 != null) {
-            toolbar2.setElevation(0);
+        ActionBar toolbar_menu = getSupportActionBar();
+        if (toolbar_menu != null) {
+            toolbar_menu.setElevation(0);
         }
 
     }
 
-    private void getDataFromAPI() {
+    private void getDataFromAPI(String url) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = Constant.URL_API_MOVIE + Constant.POPULAR +
-                Constant.PARAM_API_KEY + Constant.API_KEY;
+
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
                 url,
@@ -111,13 +112,14 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onResponse(String response) {
                         try {
-                            PopularMovies popularMovies = gson.fromJson(response, PopularMovies.class);
-                            for (Results item : popularMovies.getResults()) {
+                            Movies movies = gson.fromJson(response, Movies.class);
+                            for (Results item : movies.getResults()) {
                                 moviesItemList.add(item);
                             }
                             mAdapter.notifyDataSetChanged();
                         } catch (Exception e) {
                             Log.e(TAG, e.getMessage());
+                            Toast.makeText(getApplication(),"Error Response",Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
@@ -133,6 +135,24 @@ public class MainActivity extends AppCompatActivity
                 }
         );
         requestQueue.add(stringRequest);
+    }
+
+    private void requestJsonObject(int i){
+        if (i == 1) {
+            setTitle("Popular Movie");
+            FilmCategory = "popular";
+        } else if (i == 2) {
+            setTitle("Top Rated Movie");
+            FilmCategory = "top_rated";
+        } else if (i == 3) {
+            setTitle("Coming Soon");
+            FilmCategory = "upcoming";
+        }
+        String FullURL = Constant.URL_API_MOVIE
+                + FilmCategory
+                + Constant.PARAM_API_KEY
+                + Constant.API_KEY;
+        getDataFromAPI(FullURL);
     }
 
     @Override
@@ -196,15 +216,18 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_popular) {
-            // Handle the popular action
+            indeks = 1;
         } else if (id == R.id.nav_top_rated) {
-
+            indeks = 2;
         } else if (id == R.id.nav_favorit) {
-
+            indeks = 3;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        requestJsonObject(indeks);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+
     }
+
 }

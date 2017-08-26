@@ -35,8 +35,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         void onItemClick(Results data, int position);
     }
 
-    public MoviesAdapter(List<Results> popularItemList, ItemClickListener mOnClickListener) {
-        this.moviesItemList = popularItemList;
+    public MoviesAdapter(List<Results> moviesItemList, ItemClickListener mOnClickListener) {
+        this.moviesItemList = moviesItemList;
         this.mOnClickListener = mOnClickListener;
     }
 
