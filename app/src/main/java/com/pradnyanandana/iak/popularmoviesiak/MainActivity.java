@@ -119,7 +119,6 @@ public class MainActivity extends AppCompatActivity
                             mAdapter.notifyDataSetChanged();
                         } catch (Exception e) {
                             Log.e(TAG, e.getMessage());
-                            Toast.makeText(getApplication(),"Error Response",Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
