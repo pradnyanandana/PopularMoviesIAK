@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.pradnyanandana.iak.popularmoviesiak.MostPopularActivity;
 import com.pradnyanandana.iak.popularmoviesiak.R;
 import com.pradnyanandana.iak.popularmoviesiak.model.Results;
 import com.pradnyanandana.iak.popularmoviesiak.utilities.Constant;
@@ -36,8 +35,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         void onItemClick(Results data, int position);
     }
 
-    public MoviesAdapter(List<Results> MoviesItemList, ItemClickListener mOnClickListener) {
-        this.moviesItemList = MoviesItemList;
+    public MoviesAdapter(List<Results> popularItemList, ItemClickListener mOnClickListener) {
+        this.moviesItemList = popularItemList;
         this.mOnClickListener = mOnClickListener;
     }
 
