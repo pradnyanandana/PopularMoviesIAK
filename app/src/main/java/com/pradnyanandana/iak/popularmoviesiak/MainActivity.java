@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MoviesAdapter.ItemClickListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
-    public List<Results> moviesItemList = new ArrayList<>();
+    public List<Results> moviesItemList;
     Movies movies;
     @BindView(R.id.rv_movies)
     RecyclerView mRecyclerView;
@@ -79,17 +79,16 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         ButterKnife.bind(this);
-        mAdapter = new MoviesAdapter(moviesItemList, this);
         GridLayoutManager layoutManager = new GridLayoutManager(MainActivity.this, 2);
 
         mRecyclerView.setLayoutManager(layoutManager);
         mDividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(), layoutManager.getOrientation());
         mRecyclerView.addItemDecoration(mDividerItemDecoration);
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setAdapter(mAdapter);
 
         if (isNetworkConnected() || isWifiConnected()) {
-            requestJsonObject(indeks);
+            CreateList();
+//            requestJsonObject(indeks);
         } else {
             mRecyclerView.setVisibility(View.INVISIBLE);
             mLinearLayoutRetry.setVisibility(View.VISIBLE);
@@ -102,7 +101,19 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private void CreateList() {
+        requestJsonObject(indeks);
+
+        moviesItemList = new ArrayList<>();
+        mAdapter = new MoviesAdapter(moviesItemList, this);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
     private void getDataFromAPI(String url) {
+//        moviesItemList = new ArrayList<>();
+//        mAdapter = new MoviesAdapter(moviesItemList, this);
+//        mRecyclerView.setAdapter(mAdapter);
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = new StringRequest(
@@ -222,8 +233,9 @@ public class MainActivity extends AppCompatActivity
             indeks = 3;
         }
 
+        CreateList();
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        requestJsonObject(indeks);
         drawer.closeDrawer(GravityCompat.START);
         return true;
 
