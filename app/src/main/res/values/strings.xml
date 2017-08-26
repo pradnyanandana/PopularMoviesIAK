@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">PopularMoviesIAK</string>
     <string name="network_error">Network Error! Make sure you are connected to the internet</string>
+    <string name="title_activity_main">Popular Movies IAK</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

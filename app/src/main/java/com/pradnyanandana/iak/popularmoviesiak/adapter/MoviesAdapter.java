@@ -15,7 +15,6 @@ import com.pradnyanandana.iak.popularmoviesiak.MostPopularActivity;
 import com.pradnyanandana.iak.popularmoviesiak.R;
 import com.pradnyanandana.iak.popularmoviesiak.model.Results;
 import com.pradnyanandana.iak.popularmoviesiak.utilities.Constant;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +36,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         void onItemClick(Results data, int position);
     }
 
-    public MoviesAdapter(List<Results> popularItemList, ItemClickListener mOnClickListener) {
-        this.moviesItemList = popularItemList;
+    public MoviesAdapter(List<Results> MoviesItemList, ItemClickListener mOnClickListener) {
+        this.moviesItemList = MoviesItemList;
         this.mOnClickListener = mOnClickListener;
     }
 
