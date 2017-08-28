@@ -61,7 +61,7 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
         ButterKnife.bind(this);
 
         trailersAdapter = new TrailersAdapter(resultsTrailersList, this);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         trailersRecyclerView.setLayoutManager(layoutManager);
         trailersRecyclerView.setHasFixedSize(true);
