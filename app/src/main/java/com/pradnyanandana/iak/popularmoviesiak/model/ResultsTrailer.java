@@ -4,7 +4,7 @@ package com.pradnyanandana.iak.popularmoviesiak.model;
  * Created by pradn on 24/08/2017.
  */
 
-class ResultsTrailer {
+public class ResultsTrailer {
     private String key;
     private String name;
     private String site;

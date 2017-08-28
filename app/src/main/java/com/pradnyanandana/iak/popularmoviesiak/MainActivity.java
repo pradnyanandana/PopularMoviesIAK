@@ -21,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,18 +48,14 @@ public class MainActivity extends AppCompatActivity
 
     public static final String TAG = MainActivity.class.getSimpleName();
     public List<Results> moviesItemList;
-    Movies movies;
     @BindView(R.id.rv_movies)
     RecyclerView mRecyclerView;
     private MoviesAdapter mAdapter;
     private Gson gson = new Gson();
     private DividerItemDecoration mDividerItemDecoration;
-    @BindView(R.id.line_network_retry)
-    LinearLayout mLinearLayoutRetry;
-    @BindView(R.id.iv_error_message)
-    ImageView mImageErrorMessage;
-    @BindView(R.id.tv_error_message)
-    TextView mDisplayErrorMessage;
+    @BindView(R.id.line_network_retry) LinearLayout mLinearLayoutRetry;
+    @BindView(R.id.iv_error_message) ImageView mImageErrorMessage;
+    @BindView(R.id.tv_error_message) TextView mDisplayErrorMessage;
     private String FilmCategory;
     private int indeks = 1;
 
@@ -87,8 +84,9 @@ public class MainActivity extends AppCompatActivity
         mRecyclerView.setHasFixedSize(true);
 
         if (isNetworkConnected() || isWifiConnected()) {
+            mRecyclerView.setVisibility(View.VISIBLE);
+            mLinearLayoutRetry.setVisibility(View.INVISIBLE);
             CreateList();
-//            requestJsonObject(indeks);
         } else {
             mRecyclerView.setVisibility(View.INVISIBLE);
             mLinearLayoutRetry.setVisibility(View.VISIBLE);
@@ -150,13 +148,13 @@ public class MainActivity extends AppCompatActivity
     private void requestJsonObject(int i){
         if (i == 1) {
             setTitle("Popular Movie");
-            FilmCategory = "popular";
+            FilmCategory = Constant.POPULAR;
         } else if (i == 2) {
             setTitle("Top Rated Movie");
-            FilmCategory = "top_rated";
+            FilmCategory = Constant.TOP_RATED;
         } else if (i == 3) {
             setTitle("Coming Soon");
-            FilmCategory = "upcoming";
+            FilmCategory = Constant.UPCOMING;
         }
         String FullURL = Constant.URL_API_MOVIE
                 + FilmCategory
@@ -233,7 +231,14 @@ public class MainActivity extends AppCompatActivity
             indeks = 3;
         }
 
-        CreateList();
+        if (isNetworkConnected() || isWifiConnected()) {
+            mRecyclerView.setVisibility(View.VISIBLE);
+            mLinearLayoutRetry.setVisibility(View.INVISIBLE);
+            CreateList();
+        } else {
+            mRecyclerView.setVisibility(View.INVISIBLE);
+            mLinearLayoutRetry.setVisibility(View.VISIBLE);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
