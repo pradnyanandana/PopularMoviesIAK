@@ -16,7 +16,7 @@
             android:title="Up Coming" />
     </group>
 
-    <item android:title="Filmku">
+    <item android:title="My Film">
         <menu>
             <item
                 android:id="@+id/nav_favorit"
