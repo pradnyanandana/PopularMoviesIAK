@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity
             indeks = 1;
         } else if (id == R.id.nav_top_rated) {
             indeks = 2;
-        } else if (id == R.id.nav_favorit) {
+        } else if (id == R.id.nav_up_coming) {
             indeks = 3;
         }
 
