@@ -24,9 +24,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 import com.pradnyanandana.iak.popularmoviesiak.adapter.MoviesAdapter;
+import com.pradnyanandana.iak.popularmoviesiak.adapter.ReviewsAdapter;
 import com.pradnyanandana.iak.popularmoviesiak.adapter.TrailersAdapter;
 import com.pradnyanandana.iak.popularmoviesiak.model.Results;
 import com.pradnyanandana.iak.popularmoviesiak.model.ResultsTrailer;
+import com.pradnyanandana.iak.popularmoviesiak.model.ResultsReview;
+import com.pradnyanandana.iak.popularmoviesiak.model.ReviewMovies;
 import com.pradnyanandana.iak.popularmoviesiak.model.TrailerMovies;
 import com.pradnyanandana.iak.popularmoviesiak.utilities.Constant;
 
@@ -36,18 +39,20 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DetailActivity extends AppCompatActivity implements TrailersAdapter.ItemClickListener{
+public class DetailActivity extends AppCompatActivity implements TrailersAdapter.ItemClickListener {
 
     public static final String TAG = DetailActivity.class.getSimpleName();
     public List<ResultsTrailer> resultsTrailersList = new ArrayList<>();
+    public List<ResultsReview> resultsReviewsList = new ArrayList<>();
 
     private TrailersAdapter trailersAdapter;
+    private ReviewsAdapter reviewsAdapter;
     private String jsonData;
-    private int position;
     private Results results;
     private Gson gson = new Gson();
 
     @BindView(R.id.rv_trailers) RecyclerView trailersRecyclerView;
+    @BindView(R.id.rv_reviews) RecyclerView reviewsRecyclerView;
     @BindView(R.id.iv_detail_backdrop)ImageView backdrop;
     @BindView(R.id.iv_detail_poster) ImageView poster;
     @BindView(R.id.tv_detail_release)TextView release;
@@ -61,14 +66,18 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
         ButterKnife.bind(this);
 
         trailersAdapter = new TrailersAdapter(resultsTrailersList, this);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager trailerLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        reviewsAdapter = new ReviewsAdapter(resultsReviewsList);
+        LinearLayoutManager reviewLayoutManager = new LinearLayoutManager(this);
 
-        trailersRecyclerView.setLayoutManager(layoutManager);
+        trailersRecyclerView.setLayoutManager(trailerLayoutManager);
         trailersRecyclerView.setHasFixedSize(true);
         trailersRecyclerView.setAdapter(trailersAdapter);
+        reviewsRecyclerView.setLayoutManager(reviewLayoutManager);
+        reviewsRecyclerView.setHasFixedSize(true);
+        reviewsRecyclerView.setAdapter(reviewsAdapter);
 
         jsonData = getIntent().getStringExtra("data");
-        position = getIntent().getIntExtra("position", 0);
 
         if (jsonData != null) {
             results = gson.fromJson(jsonData, Results.class);
@@ -77,10 +86,50 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
             Log.e(TAG, "Data is null");
         }
 
-        getDataFromAPI();
+        getDataTrailerFromAPI();
+        getDataReviewFromAPI();
     }
 
-    private void getDataFromAPI() {
+
+    private void getDataReviewFromAPI() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String url = Constant.URL_API_MOVIE
+                + results.getId()
+                + Constant.REVIEWS
+                + Constant.PARAM_API_KEY
+                + Constant.API_KEY;
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.GET,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            ReviewMovies reviewMovies = gson.fromJson(response, ReviewMovies.class);
+                            for (ResultsReview item : reviewMovies.getResults()) {
+                                resultsReviewsList.add(item);
+                            }
+                            reviewsAdapter.notifyDataSetChanged();
+                        } catch (Exception e) {
+                            Log.e(TAG, e.getMessage());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if (error != null) {
+                            Log.e(TAG, error.getMessage());
+                        } else {
+                            Log.e(TAG, "Something error happened!");
+                        }
+                    }
+                }
+        );
+        requestQueue.add(stringRequest);
+    }
+
+    private void getDataTrailerFromAPI() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String url = Constant.URL_API_MOVIE
                 + results.getId()

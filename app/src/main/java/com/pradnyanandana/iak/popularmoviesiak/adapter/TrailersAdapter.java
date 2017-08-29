@@ -65,6 +65,7 @@ public class TrailersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public class TrailersViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.iv_detail_trailers) ImageView thumbnail;
         @BindView(R.id.tv_detail_trailers) TextView title;
+        @BindView(R.id.tv_detail_trailers_type) TextView type;
 
         public TrailersViewHolder(View itemView) {
             super(itemView);
@@ -79,6 +80,7 @@ public class TrailersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(thumbnail);
             title.setText(data.getName());
+            type.setText(data.getType());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -4,7 +4,9 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginRight="20dp">
+    android:background="@drawable/rounded_color_white"
+    android:layout_marginRight="20dp"
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/iv_detail_trailers"
@@ -17,6 +19,12 @@
         android:id="@+id/tv_detail_trailers"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/tv_detail_trailers_type"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:textColor="#80000000"/>
 
 </LinearLayout>

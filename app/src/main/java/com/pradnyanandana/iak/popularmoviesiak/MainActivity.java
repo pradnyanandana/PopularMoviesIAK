@@ -167,7 +167,6 @@ public class MainActivity extends AppCompatActivity
     public void onItemClick(Results data, int position) {
         Intent startDetailActivity = new Intent(this, DetailActivity.class);
         startDetailActivity.putExtra("data", gson.toJson(data));
-        startDetailActivity.putExtra("position", position);
         startActivity(startDetailActivity);
     }
 

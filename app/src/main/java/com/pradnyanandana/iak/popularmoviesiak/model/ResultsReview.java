@@ -4,10 +4,10 @@ package com.pradnyanandana.iak.popularmoviesiak.model;
  * Created by pradn on 23/08/2017.
  */
 
-class ResultsReview {
+public class ResultsReview {
     private String id;
     private String author;
-    private String Content;
+    private String content;
     private String url;
 
     public String getId() {
@@ -27,11 +27,11 @@ class ResultsReview {
     }
 
     public String getContent() {
-        return Content;
+        return content;
     }
 
     public void setContent(String content) {
-        Content = content;
+        this.content = content;
     }
 
     public String getUrl() {

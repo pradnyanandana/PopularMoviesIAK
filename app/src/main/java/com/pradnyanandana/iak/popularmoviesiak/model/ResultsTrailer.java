@@ -8,6 +8,7 @@ public class ResultsTrailer {
     private String key;
     private String name;
     private String site;
+    private String type;
 
     public String getKey() {
         return key;
@@ -31,5 +32,13 @@ public class ResultsTrailer {
 
     public void setSite(String site) {
         this.site = site;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
