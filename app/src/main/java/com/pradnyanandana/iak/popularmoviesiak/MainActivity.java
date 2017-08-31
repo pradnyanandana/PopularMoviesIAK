@@ -9,7 +9,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -57,12 +59,14 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.iv_error_message) ImageView mImageErrorMessage;
     @BindView(R.id.tv_error_message) TextView mDisplayErrorMessage;
     private String FilmCategory;
+    private SearchView menuSearch;
     private int indeks = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -83,10 +87,8 @@ public class MainActivity extends AppCompatActivity
         mRecyclerView.addItemDecoration(mDividerItemDecoration);
         mRecyclerView.setHasFixedSize(true);
 
-        setTitle("Popular Movie");
-
         if (isNetworkConnected() || isWifiConnected()) {
-            CreateList();
+            requestJsonObject(indeks);
         } else {
             mRecyclerView.setVisibility(View.INVISIBLE);
             mLinearLayoutRetry.setVisibility(View.VISIBLE);
@@ -99,15 +101,23 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void CreateList() {
-        requestJsonObject(indeks);
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("indeks", indeks);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        indeks = savedInstanceState.getInt("indeks");
+    }
+
+    private void getDataFromAPI(String url) {
 
         moviesItemList = new ArrayList<>();
         mAdapter = new MoviesAdapter(moviesItemList, this);
         mRecyclerView.setAdapter(mAdapter);
-    }
-
-    private void getDataFromAPI(String url) {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -144,10 +154,13 @@ public class MainActivity extends AppCompatActivity
 
     private void requestJsonObject(int i){
         if (i == 1) {
+            setTitle("Popular Movie");
             FilmCategory = Constant.POPULAR;
         } else if (i == 2) {
+            setTitle("Top Rated Movie");
             FilmCategory = Constant.TOP_RATED;
         } else if (i == 3) {
+            setTitle("Coming Soon");
             FilmCategory = Constant.UPCOMING;
         }
         String FullURL = Constant.URL_API_MOVIE
@@ -190,9 +203,29 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main, menu);
+
+        menuSearch = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        menuSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(getApplication(), "Searching" ,Toast.LENGTH_LONG).show();
+                String url = "";
+                url = "http://api.themoviedb.org/3/search/movie?" +
+                        FilmCategory +
+                        "&query=" + query +
+                        "&api_key=" + Constant.API_KEY;
+                getDataFromAPI(url);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -203,8 +236,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_about) {
+            Toast.makeText(getApplicationContext(),
+                    "Pradnyanandana Suwitra \nIndonesia Android Kejar \nIntermediate",
+                    Toast.LENGTH_SHORT).show();
+//            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -217,20 +253,17 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_popular) {
-            setTitle("Popular Movie");
             indeks = 1;
         } else if (id == R.id.nav_top_rated) {
-            setTitle("Top Rated Movie");
             indeks = 2;
         } else if (id == R.id.nav_up_coming) {
-            setTitle("Coming Soon");
             indeks = 3;
         }
 
         if (isNetworkConnected() || isWifiConnected()) {
             mRecyclerView.setVisibility(View.VISIBLE);
             mLinearLayoutRetry.setVisibility(View.INVISIBLE);
-            CreateList();
+            requestJsonObject(indeks);
         } else {
             mRecyclerView.setVisibility(View.INVISIBLE);
             mLinearLayoutRetry.setVisibility(View.VISIBLE);

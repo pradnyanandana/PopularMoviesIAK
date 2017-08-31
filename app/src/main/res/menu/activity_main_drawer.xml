@@ -16,13 +16,13 @@
             android:title="Up Coming" />
     </group>
 
-    <item android:title="My Film">
-        <menu>
-            <item
-                android:id="@+id/nav_favorit"
-                android:icon="@drawable/ic_menu_favorite"
-                android:title="Favorit" />
-        </menu>
-    </item>
+    <!--<item android:title="My Film">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_favorit"-->
+                <!--android:icon="@drawable/ic_menu_favorite"-->
+                <!--android:title="Favorit" />-->
+        <!--</menu>-->
+    <!--</item>-->
 
 </menu>

@@ -79,19 +79,19 @@
 
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent">-->
 
-                <ImageButton
-                    android:id="@+id/ib_favorit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
-                    android:src="@drawable/star_off"
-                    android:layout_centerInParent="true"/>
+                <!--<ImageButton-->
+                    <!--android:id="@+id/ib_favorit"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@color/colorPrimary"-->
+                    <!--android:src="@drawable/star_off"-->
+                    <!--android:layout_centerInParent="true"/>-->
 
-            </RelativeLayout>
+            <!--</RelativeLayout>-->
 
         </LinearLayout>
 
