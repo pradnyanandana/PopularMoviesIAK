@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashScreen"
-            android:label="Popular Movies IAK"
+            android:label="Filmy"
             android:theme="@style/Splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
