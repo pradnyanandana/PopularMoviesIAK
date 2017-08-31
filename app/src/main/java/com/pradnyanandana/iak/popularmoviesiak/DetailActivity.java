@@ -2,6 +2,8 @@ package com.pradnyanandana.iak.popularmoviesiak;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -192,4 +194,5 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
         rate.setText(String.valueOf(results.getVote_average()));
         overview.setText(results.getOverview());
     }
+
 }

@@ -83,9 +83,9 @@ public class MainActivity extends AppCompatActivity
         mRecyclerView.addItemDecoration(mDividerItemDecoration);
         mRecyclerView.setHasFixedSize(true);
 
+        setTitle("Popular Movie");
+
         if (isNetworkConnected() || isWifiConnected()) {
-            mRecyclerView.setVisibility(View.VISIBLE);
-            mLinearLayoutRetry.setVisibility(View.INVISIBLE);
             CreateList();
         } else {
             mRecyclerView.setVisibility(View.INVISIBLE);
@@ -108,9 +108,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void getDataFromAPI(String url) {
-//        moviesItemList = new ArrayList<>();
-//        mAdapter = new MoviesAdapter(moviesItemList, this);
-//        mRecyclerView.setAdapter(mAdapter);
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -147,13 +144,10 @@ public class MainActivity extends AppCompatActivity
 
     private void requestJsonObject(int i){
         if (i == 1) {
-            setTitle("Popular Movie");
             FilmCategory = Constant.POPULAR;
         } else if (i == 2) {
-            setTitle("Top Rated Movie");
             FilmCategory = Constant.TOP_RATED;
         } else if (i == 3) {
-            setTitle("Coming Soon");
             FilmCategory = Constant.UPCOMING;
         }
         String FullURL = Constant.URL_API_MOVIE
@@ -223,10 +217,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_popular) {
+            setTitle("Popular Movie");
             indeks = 1;
         } else if (id == R.id.nav_top_rated) {
+            setTitle("Top Rated Movie");
             indeks = 2;
         } else if (id == R.id.nav_up_coming) {
+            setTitle("Coming Soon");
             indeks = 3;
         }
 
