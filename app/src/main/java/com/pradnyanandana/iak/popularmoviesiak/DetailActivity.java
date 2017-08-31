@@ -11,12 +11,17 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -54,6 +59,7 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
     private String jsonData;
     private Results results;
     private Gson gson = new Gson();
+    private MenuItem SharedContent;
 
     @BindView(R.id.rv_trailers) RecyclerView trailersRecyclerView;
     @BindView(R.id.rv_reviews) RecyclerView reviewsRecyclerView;
@@ -102,7 +108,6 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
 //        });
 
     }
-
 
     private void getDataReviewFromAPI() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -205,5 +210,30 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
         rate.setText(String.valueOf(results.getVote_average()));
         overview.setText(results.getOverview());
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater menuInflater = getMenuInflater();
+//        menuInflater.inflate(R.menu.menu_detail, menu);
+//
+//        SharedContent = (MenuItem) menu.findItem(R.id.action_share).getActionView();
+//        SharedContent.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem menuItem) {
+//                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+//                sharingIntent.setType("text/plain");
+//                String shareBody = "[Filmy] \nMovie name : " + results.getTitle() + "\n\n" +
+//                        overview.getText().toString() + "\n\n" +
+//                        "\u2605" + rate.getText().toString() + "\n" +
+//                        release.getText().toString() + "\n";
+//
+//                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Filmy");
+//                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+//                startActivity(Intent.createChooser(sharingIntent, "Share in your friends"));
+//                return true;
+//            }
+//        });
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
 }
