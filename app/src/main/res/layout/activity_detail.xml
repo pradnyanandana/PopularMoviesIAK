@@ -40,13 +40,14 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Release Date"
-                    android:textSize="20sp"
-                    android:textColor="#FFFFFF"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="38dp"
-                    android:layout_marginLeft="20dp"/>
+                    android:text="Release Date"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tv_detail_release"
@@ -77,6 +78,20 @@
                     android:layout_marginBottom="20dp"/>
 
             </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/ib_favorit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:src="@drawable/star_off"
+                    android:layout_centerInParent="true"/>
+
+            </RelativeLayout>
 
         </LinearLayout>
 

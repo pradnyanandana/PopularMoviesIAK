@@ -13,6 +13,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -60,6 +62,7 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
     @BindView(R.id.tv_detail_release)TextView release;
     @BindView(R.id.tv_detail_rating) TextView rate;
     @BindView(R.id.tv_detail_overview) TextView overview;
+    @BindView(R.id.ib_favorit) ImageButton favorit_movie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +93,14 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
 
         getDataTrailerFromAPI();
         getDataReviewFromAPI();
+
+        favorit_movie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                favorit_movie.setImageResource(R.drawable.star_on);
+            }
+        });
+
     }
 
 
