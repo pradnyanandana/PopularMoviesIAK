@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,7 +59,9 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
     @BindView(R.id.tv_detail_release)TextView release;
     @BindView(R.id.tv_detail_rating) TextView rate;
     @BindView(R.id.tv_detail_overview) TextView overview;
-//    @BindView(R.id.ib_favorit) ImageButton favorit_movie;
+    @BindView(R.id.ib_favorit) ImageButton favorit_movie;
+
+    private int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,12 +93,18 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
         getDataTrailerFromAPI();
         getDataReviewFromAPI();
 
-//        favorit_movie.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                favorit_movie.setImageResource(R.drawable.star_on);
-//            }
-//        });
+        favorit_movie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (i == 0) {
+                    favorit_movie.setImageResource(R.drawable.star_on);
+                    i = 1;
+                } else {
+                    favorit_movie.setImageResource(R.drawable.star_off);
+                    i = 0;
+                }
+            }
+        });
 
     }
 
