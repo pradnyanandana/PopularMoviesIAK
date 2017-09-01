@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,6 +27,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 import com.pradnyanandana.iak.popularmoviesiak.adapter.ReviewsAdapter;
 import com.pradnyanandana.iak.popularmoviesiak.adapter.TrailersAdapter;
+import com.pradnyanandana.iak.popularmoviesiak.database.FavoriteRepo;
+import com.pradnyanandana.iak.popularmoviesiak.model.FavoriteMovies;
 import com.pradnyanandana.iak.popularmoviesiak.model.Results;
 import com.pradnyanandana.iak.popularmoviesiak.model.ResultsTrailer;
 import com.pradnyanandana.iak.popularmoviesiak.model.ResultsReview;
@@ -38,6 +41,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static android.R.attr.id;
 
 public class DetailActivity extends AppCompatActivity implements TrailersAdapter.ItemClickListener {
 
@@ -59,15 +64,26 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
     @BindView(R.id.tv_detail_release)TextView release;
     @BindView(R.id.tv_detail_rating) TextView rate;
     @BindView(R.id.tv_detail_overview) TextView overview;
-    @BindView(R.id.ib_favorit) ImageButton favorit_movie;
+//    @BindView(R.id.ib_favorit) ImageButton favorit_movie;
 
     private int i = 0;
+    private int _Favorite_Id=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
+
+//        if (savedInstanceState != null) {
+//            i = savedInstanceState.getInt("i");
+//        }
+
+//        if (i == 0) {
+//            favorit_movie.setImageResource(R.drawable.star_off);
+//        } else {
+//            favorit_movie.setImageResource(R.drawable.star_on);
+//        }
 
         trailersAdapter = new TrailersAdapter(resultsTrailersList, this);
         LinearLayoutManager trailerLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -93,20 +109,13 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
         getDataTrailerFromAPI();
         getDataReviewFromAPI();
 
-        favorit_movie.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (i == 0) {
-                    favorit_movie.setImageResource(R.drawable.star_on);
-                    i = 1;
-                } else {
-                    favorit_movie.setImageResource(R.drawable.star_off);
-                    i = 0;
-                }
-            }
-        });
-
     }
+
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putInt("i", i);
+//    }
 
     private void getDataReviewFromAPI() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);

@@ -25,6 +25,7 @@ public class FavoriteDBHelper extends SQLiteOpenHelper {
 
         String CREATE_TABLE_MOVIE = "CREATE TABLE " + FavoriteMovies.TABLE + "("
                 + FavoriteMovies.KEY_ID  + " INTEGER PRIMARY KEY AUTOINCREMENT ,"//bikin tabel
+                + FavoriteMovies.KEY_movie_id + " TEXT, "
                 + FavoriteMovies.KEY_title + " TEXT, "
                 + FavoriteMovies.KEY_release + " TEXT, "
                 + FavoriteMovies.KEY_rate + " DOUBLE, "

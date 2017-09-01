@@ -28,6 +28,7 @@ public class FavoriteRepo {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(FavoriteMovies.KEY_title, favoriteMovies.favorite_title);//masukan data student.age ke Student.Key_age(di kolom database)
+        values.put(FavoriteMovies.KEY_movie_id, favoriteMovies.favorite_movie_id);
         values.put(FavoriteMovies.KEY_release, favoriteMovies.favorite_release);
         values.put(FavoriteMovies.KEY_rate, favoriteMovies.favorite_rate);
         values.put(FavoriteMovies.KEY_overview, favoriteMovies.favorite_overview);
@@ -53,6 +54,7 @@ public class FavoriteRepo {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put(FavoriteMovies.KEY_movie_id, favoriteMovies.favorite_movie_id);
         values.put(FavoriteMovies.KEY_title, favoriteMovies.favorite_title);
         values.put(FavoriteMovies.KEY_release, favoriteMovies.favorite_release);
         values.put(FavoriteMovies.KEY_rate, favoriteMovies.favorite_rate);
@@ -70,6 +72,7 @@ public class FavoriteRepo {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 FavoriteMovies.KEY_ID + "," +
+                FavoriteMovies.KEY_movie_id + "," +
                 FavoriteMovies.KEY_title + "," +
                 FavoriteMovies.KEY_release + "," +
                 FavoriteMovies.KEY_rate + "," +
@@ -88,6 +91,7 @@ public class FavoriteRepo {
             do {
                 HashMap<String, String> favorite_movies = new HashMap<String, String>();
                 favorite_movies.put("id", cursor.getString(cursor.getColumnIndex(FavoriteMovies.KEY_ID)));
+                favorite_movies.put("movie_id", cursor.getString(cursor.getColumnIndex(FavoriteMovies.KEY_movie_id)));
                 favorite_movies.put("title", cursor.getString(cursor.getColumnIndex(FavoriteMovies.KEY_title)));
                 favorite_movies.put("release", cursor.getString(cursor.getColumnIndex(FavoriteMovies.KEY_release)));
                 favorite_movies.put("rate", String.valueOf(cursor.getDouble(cursor.getColumnIndex(FavoriteMovies.KEY_rate))));
@@ -109,6 +113,7 @@ public class FavoriteRepo {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 FavoriteMovies.KEY_ID + "," +
+                FavoriteMovies.KEY_movie_id + "," +
                 FavoriteMovies.KEY_title + "," +
                 FavoriteMovies.KEY_release + "," +
                 FavoriteMovies.KEY_rate + "," +
@@ -126,7 +131,8 @@ public class FavoriteRepo {
 
         if (cursor.moveToFirst()) {
             do {
-                favoriteMovies.favorite_ID =cursor.getString(cursor.getColumnIndex(FavoriteMovies.KEY_ID));//ambil ID dari listview
+                favoriteMovies.favorite_ID =cursor.getInt(cursor.getColumnIndex(FavoriteMovies.KEY_ID));//ambil ID dari listview
+                favoriteMovies.favorite_movie_id =cursor.getString(cursor.getColumnIndex(FavoriteMovies.KEY_movie_id));
                 favoriteMovies.favorite_title =cursor.getString(cursor.getColumnIndex(FavoriteMovies.KEY_title));
                 favoriteMovies.favorite_release  =cursor.getString(cursor.getColumnIndex(FavoriteMovies.KEY_release));
                 favoriteMovies.favorite_rate  =cursor.getDouble(cursor.getColumnIndex(FavoriteMovies.KEY_rate));
