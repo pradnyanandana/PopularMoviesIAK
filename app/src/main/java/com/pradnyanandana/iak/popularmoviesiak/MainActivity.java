@@ -67,6 +67,10 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (savedInstanceState != null) {
+            indeks = savedInstanceState.getInt("indeks");
+        }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -107,11 +111,11 @@ public class MainActivity extends AppCompatActivity
         outState.putInt("indeks", indeks);
     }
 
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        indeks = savedInstanceState.getInt("indeks");
-    }
+//    @Override
+//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        indeks = savedInstanceState.getInt("indeks");
+//    }
 
     private void getDataFromAPI(String url) {
 

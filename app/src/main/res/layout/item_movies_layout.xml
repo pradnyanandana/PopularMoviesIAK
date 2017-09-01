@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:text="Minions"
                 android:background="@color/colorPrimary"
-                android:textColor="#000000"
+                android:textColor="#FFFFFF"
                 android:padding="5dp"/>
         </LinearLayout>
 
