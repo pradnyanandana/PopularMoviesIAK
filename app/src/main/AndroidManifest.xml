@@ -26,10 +26,13 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".DetailActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity
+            android:name=".AboutActivity"
             android:parentActivityName=".MainActivity">
         </activity>
     </application>

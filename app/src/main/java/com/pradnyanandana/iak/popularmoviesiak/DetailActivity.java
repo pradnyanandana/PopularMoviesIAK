@@ -1,27 +1,17 @@
 package com.pradnyanandana.iak.popularmoviesiak;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -32,7 +22,6 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
-import com.pradnyanandana.iak.popularmoviesiak.adapter.MoviesAdapter;
 import com.pradnyanandana.iak.popularmoviesiak.adapter.ReviewsAdapter;
 import com.pradnyanandana.iak.popularmoviesiak.adapter.TrailersAdapter;
 import com.pradnyanandana.iak.popularmoviesiak.model.Results;
@@ -211,10 +200,10 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
         overview.setText(results.getOverview());
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater menuInflater = getMenuInflater();
-//        menuInflater.inflate(R.menu.menu_detail, menu);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_detail, menu);
 //
 //        SharedContent = (MenuItem) menu.findItem(R.id.action_share).getActionView();
 //        SharedContent.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
@@ -234,6 +223,7 @@ public class DetailActivity extends AppCompatActivity implements TrailersAdapter
 //            }
 //        });
 //        return super.onCreateOptionsMenu(menu);
-//    }
+        return true;
+    }
 
 }

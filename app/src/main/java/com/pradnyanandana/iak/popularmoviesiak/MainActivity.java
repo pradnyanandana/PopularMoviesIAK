@@ -111,12 +111,6 @@ public class MainActivity extends AppCompatActivity
         outState.putInt("indeks", indeks);
     }
 
-//    @Override
-//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-//        super.onRestoreInstanceState(savedInstanceState);
-//        indeks = savedInstanceState.getInt("indeks");
-//    }
-
     private void getDataFromAPI(String url) {
 
         moviesItemList = new ArrayList<>();
@@ -241,10 +235,8 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_about) {
-            Toast.makeText(getApplicationContext(),
-                    "Pradnyanandana Suwitra \nIndonesia Android Kejar \nIntermediate",
-                    Toast.LENGTH_SHORT).show();
-//            return true;
+            Intent about = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(about);
         }
 
         return super.onOptionsItemSelected(item);
